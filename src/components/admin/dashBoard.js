@@ -641,7 +641,7 @@ console.log(formData1);
                     onChange={(e) =>
                       setFormData2({
                         ...formData2,
-                        company_name: e.target.value,
+                        n: e.target.value,
                       })
                     }
                   />
