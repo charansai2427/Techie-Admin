@@ -15,6 +15,10 @@ function Header() {
   const handleClick = () => {
     setOpen(!open);
   };
+
+  const HandleReload=() => {
+    window.location.reload("/admin/dashboard");
+  }
   
   useEffect(() => {
     dispatch(getAllJobs());
@@ -31,7 +35,7 @@ function Header() {
         <div>
           <img
             className="logo"
-            src="https://res.cloudinary.com/cliqtick/image/upload/v1692600339/icons/logo-techie-_IE_uqk1bc.png"
+            src="https://res.cloudinary.com/cliqtick/image/upload/v1692600339/icons/logo-techie-_IE_uqk1bc.png" onClick={HandleReload}
           />
         </div>
         <div>
