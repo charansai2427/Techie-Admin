@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "../styles/buildmyprofile.scss";
 import { GoSearch } from "react-icons/go";
 import { MdModeEditOutline} from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-
 import "../styles/profileform.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser } from "../redux/slices/dataSlice";
@@ -38,25 +36,16 @@ const BuildProfile = () => {
   return (
     <div className="buldmyprofile-container">
        <Header/>
-      <div className="container profile-container">
-        <h2>Profile</h2>
-        <div className="profile-pic-container">
-           <div className="profile-pic">
-           {
-              userDetails? <img className="profile-image" src={userDetails.profile_pic} alt="Img"/> :  <p className="h1" >{email && email.slice(0,2).toUpperCase()}</p>
-            }
-            <MdModeEditOutline onClick={() => navigate("/profile/edit-pic")} className="edit-icon"/> 
-           </div>
-        </div>
-        <div className="profile-div">
-          <div className="profile-details">
+       <div className="container profile-container bg-white">
+        <div className="profile-div" >
+          <div className="profile-details" >
             <div className="no1">
               <div>
-                <label>User Name :</label>
+                <label style={{paddingRight:'1.1em'}}>User Name :</label>
               </div>
               <div>
-                <input
-                  type="text"
+                <input 
+                  type="text" style={{width:'16em',height:'2.5em',textAlign:'center',marginRight:'0.5em'}}
                   placeholder={`${userDetails.username}`}
                   onChange={(e) => setFormData({...formData,username : e.target.value})}
                 />
@@ -65,11 +54,11 @@ const BuildProfile = () => {
             <div className="no1">
            
               <div>
-                <label>Name :</label>
+                <label style={{paddingRight:'4em'}}>Name :</label>
               </div>
               <div>
                 <input
-                  type="text"
+                  type="text" style={{width:'16em',height:'2.5em',textAlign:'center',marginRight:'1em'}}
                   name="name"
                   placeholder={`${userDetails.name? userDetails.name:"N/A"}`}
                   onChange={(e) => setFormData({...formData,name : e.target.value})}
@@ -84,7 +73,7 @@ const BuildProfile = () => {
               </div>
               <div>
                 <input
-                  type="text"
+                  type="text" style={{width:'16em',height:'2.5em',textAlign:'center',marginRight:'0.5em'}}
                   placeholder={`${userDetails.email}`}
                   readOnly
                 />
@@ -94,11 +83,11 @@ const BuildProfile = () => {
             <div className="no1">
             
               <div>
-                <label>Phone Number</label>
+                <label>Phone Number :</label>
               </div>
               <div>
                 <input
-                  type="text"
+                  type="text" style={{width:'16em',height:'2.5em',textAlign:'center',marginRight:'1em'}}
                   placeholder={`+91${userDetails.mobilenumber}`}
                   readOnly
                 />
@@ -107,11 +96,11 @@ const BuildProfile = () => {
             </div>
             <div className="no1">
               <div>
-                <label>Date of Birth :</label>
+                <label style={{paddingRight:'0.9em'}}>Date of Birth :</label>
               </div>
               <div>
                 <input
-                  type="date"
+                  type="date" style={{width:'16em',height:'2.5em',textAlign:'center',marginRight:'0.6em',color:'rgb(244,179,74)'}}
                   placeholder= "Dob"
                   onChange={(e) => setFormData({...formData,dob : e.target.value})}
                 />
@@ -119,24 +108,24 @@ const BuildProfile = () => {
             </div>
             <div className="no1">
               <div>
-                <label>Gender :</label>
+                <label style={{paddingRight:'4em'}}>Gender :</label>
               </div>
               <div>
                 <input
-                  type="text"
+                  type="text" style={{width:'16em',height:'2.5em',textAlign:'center',marginRight:'1.1em'}}
                   placeholder="gender"
                   onChange={(e) => setFormData({...formData, gender : e.target.value})} 
                 />
               </div>
             </div>
             <div className="no1">
-              <div><label>Address :</label></div>
-            <textarea onChange={(e) => setFormData({...formData, address: e.target.value})}>{`${userDetails.gender? userDetails.gender:"N/A"}`}</textarea>
+              <div><label style={{paddingRight:'3.5em'}}>Address :</label></div>
+            <textarea onChange={(e) => setFormData({...formData, address: e.target.value})} >{`${userDetails.address? userDetails.address:"N/A"}`}</textarea>
             </div>
           </div>
-          <div className="update">
-             <button onClick={handleClick} type="button">Save</button>
-
+      
+          <div className="saved" >
+            <button onClick={handleClick} type="button" className="rounded" style={{width:'7em',height:'7vh',border:'none',outline:'none',backgroundColor:'orange',marginLeft:'29em',marginTop:'2em'}}>Save User</button>
           </div>
         </div>
       </div>

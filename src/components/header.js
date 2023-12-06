@@ -5,6 +5,7 @@ import { BiSearch } from "react-icons/bi";
 import { useDispatch } from 'react-redux';
 import { Progress } from 'reactstrap';
 import "../styles/header.scss"
+
 function Header() {
   const token = localStorage.getItem("token");
   const email = localStorage.getItem("email");
@@ -15,11 +16,7 @@ function Header() {
   const handleClick = () => {
     setOpen(!open);
   };
-
-  const HandleReload=() => {
-    window.location.reload("/admin/dashboard");
-  }
-  
+    
   useEffect(() => {
     dispatch(getAllJobs());
     if (!token) {
@@ -29,13 +26,13 @@ function Header() {
   }, [token]);
   return (
 
-    <div className="home-container shadow bg-light ">
+    <div className="home-container shadow bg-white ">
       <div className="line"></div>
       <div className="home-container-header">
         <div>
           <img
             className="logo"
-            src="https://res.cloudinary.com/cliqtick/image/upload/v1692600339/icons/logo-techie-_IE_uqk1bc.png" onClick={HandleReload}
+            src="https://res.cloudinary.com/cliqtick/image/upload/v1692600339/icons/logo-techie-_IE_uqk1bc.png" onClick={() =>navigate("/admin/dashboard")}
           />
         </div>
         <div>
@@ -45,7 +42,7 @@ function Header() {
 
         <div>
           <Link
-            to={"/profile=/" + userId}
+            to={"/profile/edit/:" + userId}
             style={{
               cursor: "pointer",
               textDecoration: "none",
@@ -68,8 +65,6 @@ function Header() {
           <p>{email && email.slice(0, 2).toUpperCase()}</p>
         </div>
       </div>
-      <div></div>
-
       <div
         className={` profile-dropdown ${open ? "display" : "display-none"}`}
       >

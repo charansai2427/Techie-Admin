@@ -1,6 +1,6 @@
 import { Form, useNavigate } from "react-router-dom";
 import { FormGroup, Label, Input, Button } from "reactstrap";
-import "../../styles/register.css";
+import "../../styles/login.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginUser } from "../../redux/slices/dataSlice";
@@ -28,53 +28,53 @@ export default function AdminLogin() {
     }    
   }, [token,access]);
   return (
-    <div className="register-container">
-      <div className="imagediv">
-        <img src="https://codezo.s3.amazonaws.com/static/img/login-page1.jpg" />
-      </div>
-      <div className="formDiv">
-        <Form onSubmit={handleClick}>
+    <div className='login-container'>
+    <div className='left'>
+        <img src ="https://res.cloudinary.com/cliqtick/image/upload/v1684308943/create_user_ryynll.jpg"/>
+        <button type='button'  onClick={handleClick}>Login</button>
+    </div>
+  
+        <div className='right' style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',columnGap:'2em',marginLeft:'20em',marginTop:'-25.5em'}}>
+           <div style={{backgroundColor:'black',border:'2px solid  #f4b34a',borderRadius:'50px',height:'1em',width:'1em'}}></div>
+           <div style={{width:'25em',height:'0.1em',backgroundColor:'rgb(244,179,74)'}}></div>
+           <div style={{backgroundColor:'rgb(244,179,74)',borderRadius:'50px',height:'1em',width:'1em'}}></div> 
+        </div>
+        <br/>
+        <img src="https://res.cloudinary.com/cliqtick/image/upload/v1692600339/icons/logo-techie-_IE_uqk1bc.png"  style={{width:'11em',height:'12vh',marginLeft:'44.5em'}}/>
+
+        <br/>
+
+        <div className='login' style={{lineHeight:'3em',marginLeft:'11em'}}>
           <FormGroup>
-            <Label for="exampleEmail" className="h4" style={{color:'white'}}>
-              Admin Login
-            </Label>
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleEmail" style={{color:'white'}}>Email :</Label>
-            <Input
-              id="exampleEmail"
-              name="email"
-              placeholder="Email Address"
-              type="email"
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-            />
+          <input 
+           id="exampleEmail"
+           name="email"
+           placeholder="Email Address"
+           type="email"  style={{width:'80%',height:'8vh',textAlign:'start',paddingLeft:'4%',color:'rgb(244,179,74)'}}
+           onChange={(e) =>
+            setFormData({ ...formData, email: e.target.value })
+          }
+           ></input>
           </FormGroup>
 
+
           <FormGroup>
-            <Label for="examplePassword"style={{color:'white'}} >Password :</Label>
-            <Input
-              id="examplePassword"
-              name="password"
-              placeholder="password"
-              type="password"
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
-            />
-          </FormGroup>
-              <br/>
-        <Label check className="register" onClick={handleClick2} style={{marginLeft:'2em'}}>Doesn't Have An Account ? Register</Label>
-<br/>
-<br/>
-          <FormGroup className="text-center">
-            <Button type="submit" className="bg-success" onClick={handleClick}>
-              Login
-            </Button>
-          </FormGroup>
-        </Form>
-      </div>
-    </div>
-  );
+        <input
+          id="Password"
+          name="password"
+          placeholder="Login with Password"
+          type="password"
+          style={{width:'80%',height:'8vh',textAlign:'start',paddingLeft:'4%',color:'rgb(244,179,74)'}}
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
+        />
+      </FormGroup>
+        </div>
+        <br/>
+        <br/>
+      <Label className="logins" onClick={handleClick2} style={{marginLeft:'60%',marginTop:'-2em',cursor:'pointer',color:'rgb(244,179,74)'}}>Create Account ? Register</Label>
+      
+</div>
+)
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { GoSearch } from "react-icons/go";
+import { Tooltip, IconButton } from "@mui/material";
 import {
   FormGroup,
   Label,
@@ -107,8 +108,8 @@ export default function DashBoard() {
     setModal2(false);
   };
   const handleClick8 = (args) => {
-    const {jobId, cid} = args;
-    dispatch(deleteJob({ jobId: jobId, cid : cid }));
+    const { jobId, cid } = args;
+    dispatch(deleteJob({ jobId: jobId, cid: cid }));
     window.location.reload();
     // setOpen123({ ...open123, open1: false, open2: true, open3: false })
   };
@@ -130,16 +131,16 @@ export default function DashBoard() {
       navigate("/admin/login");
     }
   }, [token, access]);
-console.log(compNames);
-console.log(formData1);
+  console.log(compNames);
+  console.log(formData1);
   useEffect(() => {
     setCompNames(companyData.map((e) => e.company_name + "$" + e._id));
   }, [companyData]);
   return (
-    <div className="dashboard-container" style={{backgroundColor:'rgb(243,243,243)',height:'100%'}}>
-     <Header/>
-      <div className="dashboard-display-part pt-3">
-        <div className="listings shadow border bg-light rounded pill " style={{height:'65vh'}}>
+    <div className="dashboard-container" style={{ backgroundColor: 'rgb(243,243,243)', height: '100%' }}>
+      <Header />
+      <div className="dashboard-display-part pt-3 bg-light">
+        <div className="listings shadow border bg-light rounded pill " style={{ height: '65vh' }}>
           <ol
             style={{ listStyle: "none", lineHeight: "3rem", cursor: "pointer" }}
           >
@@ -177,9 +178,11 @@ console.log(formData1);
                   >
                     <div className="delete">
                       {" "}
-                      <button onClick={() => handleClick7(e._id)} type="button">
-                        X
-                      </button>
+                      <Tooltip title="Delete User">
+                          <button onClick={() => handleClick7(e._id)} type="button">
+                            X
+                          </button>
+                      </Tooltip>
                     </div>
                     <CardBody>
                       <CardTitle tag="h5">{e.username}</CardTitle>
@@ -201,7 +204,7 @@ console.log(formData1);
         </div>
 
         <div
-          className={open123.open2 ? "display-part" : "display-part-disable"}style={{rowGap:'1em'}}
+          className={open123.open2 ? "display-part" : "display-part-disable"} style={{ rowGap: '1em' }}
         >
           {jobData &&
             jobData.map((e) => {
@@ -210,12 +213,14 @@ console.log(formData1);
                   <Card>
                     <div className="delete">
                       {" "}
-                      <button onClick={() => handleClick8({jobId : e._id, cid : e.cid})} type="button">
-                        X
-                      </button>
+                      <Tooltip title="Delete Job">
+                          <button onClick={() => handleClick8({ jobId: e._id, cid: e.cid })} type="button">
+                            X
+                          </button>
+                      </Tooltip>
                     </div>
                     <CardBody>
-                      <CardTitle  tag="h5">{e.title}</CardTitle>
+                      <CardTitle tag="h5">{e.title}</CardTitle>
                       <CardText>
                         <div>
                           <Label className="h6" style={{ fontWeight: "500" }}>
@@ -259,7 +264,7 @@ console.log(formData1);
             })}
         </div>
         <div
-          className={open123.open3 ? "display-part" : "display-part-disable"}style={{marginLeft:'3em',rowGap:'1em'}}
+          className={open123.open3 ? "display-part" : "display-part-disable"} style={{ marginLeft: '3em', rowGap: '1em' }}
         >
           {companyData &&
             companyData.map((e) => {
@@ -268,12 +273,11 @@ console.log(formData1);
                   <Card>
                     <div className="delete">
                       {" "}
-                      <button
-                        onClick={() => handleClick10(e._id)}
-                        type="button"
-                      >
+                      <Tooltip title="Delete Company">
+                      <button onClick={() => handleClick10(e._id)} type="button">
                         X
                       </button>
+                      </Tooltip>
                     </div>
                     <CardBody>
                       <CardText>
@@ -281,7 +285,7 @@ console.log(formData1);
                           <Label className="h6">Company Name :</Label>
                           {e.company_name}
                         </div>
-                       
+
                         <div>
                           <Label className="h6">Job Postings :</Label>
                           <span>{e.jobs ? e.jobs.length : "0"}</span>
@@ -377,7 +381,7 @@ console.log(formData1);
                     size: 10,
                   }}
                 >
-                  <Button className="bg-success" style={{marginLeft:'7em'}}>Submit</Button>
+                  <Button className="bg-success" style={{ marginLeft: '7em' }}>Submit</Button>
                 </Col>
               </FormGroup>
             </Form>
@@ -395,7 +399,7 @@ console.log(formData1);
                 <Label for="exampleEmail" sm={3}>
                   Title :
                 </Label>
-                <Col sm={8} style={{marginLeft:'2.5em'}}>
+                <Col sm={8} style={{ marginLeft: '2.5em' }}>
                   <Input
                     id="exampleEmail"
                     name="title"
@@ -417,7 +421,7 @@ console.log(formData1);
                     id="exampleSelect"
                     name="select"
                     type="select"
-                    onChange={(q) => setFormData1({ ...formData1, cid : q.target.value.split("$")[1], company_name: q.target.value.split("$")[0]})}
+                    onChange={(q) => setFormData1({ ...formData1, cid: q.target.value.split("$")[1], company_name: q.target.value.split("$")[0] })}
                   >
                     <option >select</option>
                     {compNames &&
@@ -436,7 +440,7 @@ console.log(formData1);
                 <Label for="exampleEmail" sm={3}>
                   Role :
                 </Label>
-                <Col sm={8} style={{marginLeft:'2.5em'}}>
+                <Col sm={8} style={{ marginLeft: '2.5em' }}>
                   <Input
                     id="exampleEmail"
                     name="role"
@@ -579,7 +583,7 @@ console.log(formData1);
                     size: 10,
                   }}
                 >
-                  <Button type="submit" className="bg-success" style={{marginLeft:'7em'}}>
+                  <Button type="submit" className="bg-success" style={{ marginLeft: '7em' }}>
                     Submit
                   </Button>
                 </Col>
@@ -671,7 +675,7 @@ console.log(formData1);
                     size: 10,
                   }}
                 >
-                  <Button className="bg-success" style={{marginLeft:'6em'}}>Submit</Button>
+                  <Button className="bg-success" style={{ marginLeft: '6em' }}>Submit</Button>
                 </Col>
               </FormGroup>
             </Form>
